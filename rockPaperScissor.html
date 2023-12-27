@@ -12,6 +12,7 @@
             const playerSelection = prompt("Please Enter Your Choice, I hope you win against the Skynet");
             const userInput = playerSelection.toLowerCase();        <!-- To make user input case insensitive -->
             const computerChoice = getComputerChoice();
+            var iteration = 0;
 
             window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
 
@@ -21,8 +22,8 @@
                     case 'rock':
 
                         if(computerChoice === "scissor"){
-                            console.log('you win');
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
+                            iteration++;
                         }
                         else if(computerChoice === 'paper'){
                             console.log('ypui lose');
@@ -37,6 +38,7 @@
 
                         if(computerChoice === "rock"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
+                            iteration++;
                         }
                         else if(computerChoice === 'scissor'){
                             window.alert(`You lose ! Judgement Day is coming, buckle up`);
@@ -50,6 +52,7 @@
 
                         if(computerChoice === "paper"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
+                            iteration++;
                         }
                         else if(computerChoice === 'rock'){
                             window.alert(`You lose ! Judgement Day is coming, buckle up`);
@@ -66,8 +69,16 @@
                 }
             }
 
-            evaluateResult(computerChoice, userInput);
-            
+            function game(computerChoice, userInput){
+
+                for(let i=0; i<5; i++){
+                    evaluateResult(computerChoice, userInput);
+                }
+
+                window.alert(`You won ${iteration} times out of a game of 5 rounds, I hope you enjoyed this game`);
+            }
+
+            game(computerChoice,userInput);
         </script>
     </body>
 </html>
