@@ -9,12 +9,7 @@
                 return gameOption[index];
             }
 
-            const playerSelection = prompt("Please Enter Your Choice, I hope you win against the Skynet");
-            const userInput = playerSelection.toLowerCase();        <!-- To make user input case insensitive -->
-            const computerChoice = getComputerChoice();
             var iteration = 0;
-
-            window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
 
             function evaluateResult(computerChoice, userInput){
 
@@ -65,20 +60,28 @@
                     default:
 
                         window.alert(`you sure you have put in the right input ?`);
+                        game();
                         break;
                 }
             }
 
-            function game(computerChoice, userInput){
+            function game(){
 
                 for(let i=0; i<5; i++){
+
+                    const playerSelection = prompt("Please Enter Your Choice, I hope you win against the Skynet");
+                    const userInput = playerSelection.toLowerCase();        <!-- To make user input case insensitive -->
+                    const computerChoice = getComputerChoice();
+
+                    window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
+
                     evaluateResult(computerChoice, userInput);
                 }
 
                 window.alert(`You won ${iteration} times out of a game of 5 rounds, I hope you enjoyed this game`);
             }
 
-            game(computerChoice,userInput);
+            game();
         </script>
     </body>
 </html>
