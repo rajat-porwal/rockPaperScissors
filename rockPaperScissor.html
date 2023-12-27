@@ -2,19 +2,24 @@
 <html lang="en">
     <body>
         <script>
+
             function getComputerChoice(){
                 var gameOption = ["rock", "paper", "scissor"];
                 var index = Math.floor(Math.random()*gameOption.length);
                 return gameOption[index];
             }
-            const userInput = prompt("Please Enter Your Choice, I hope you win against the Skynet");
+
+            const playerSelection = prompt("Please Enter Your Choice, I hope you win against the Skynet");
+            const userInput = playerSelection.toLowerCase();        <!-- To make user input case insensitive -->
             const computerChoice = getComputerChoice();
+
             window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
+
             function evaluateResult(computerChoice, userInput){
-                if(computerChoice === 'scissor' || computerChoice === 'rock' || computerChoice === 'paper'){
-                }
+
                 switch(String(userInput)){
                     case 'rock':
+
                         if(computerChoice === "scissor"){
                             console.log('you win');
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
@@ -29,6 +34,7 @@
                         break;
 
                     case 'paper':
+
                         if(computerChoice === "rock"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
                         }
@@ -41,6 +47,7 @@
                         break;
 
                     case 'scissor':
+
                         if(computerChoice === "paper"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
                         }
@@ -53,11 +60,14 @@
                         break;
 
                     default:
+
                         window.alert(`you sure you have put in the right input ?`);
                         break;
                 }
             }
+
             evaluateResult(computerChoice, userInput);
+            
         </script>
     </body>
 </html>
