@@ -1,27 +1,90 @@
 <!Doctype html>
 <html lang="en">
+    <head>
+        <link rel="stylesheet" href="rps.css">
+    </head>
     <body>
+        <div class="playBtn">
+            <div class="flex_wrapper">
+                <button type="button" id="rockBtn">Rock</button>  
+                <button type="button" id="paperBtn">Paper</button>    <!-- create three buttons for rock, paper and scissor -->
+                <button type ="button" id="scissorBtn">Scissor</button>
+            </div>
+        </div>
+
         <script>
 
-            function getComputerChoice(){
+            function getComputerChoice(){  //to generate random computer choice        
                 var gameOption = ["rock", "paper", "scissor"];
-                var index = Math.floor(Math.random()*gameOption.length);
+                var index = Math.floor(Math.random()*gameOption.length);    //such a clever way to generate the choice
                 return gameOption[index];
             }
 
-            var playerWinTab = 0;
+            var playerWinTab = 0;           //user win counter
+            var computerWinTab = 0;         // computer win counter
+            let userInput = '';
+            let computerChoice = '';
+
+           // if(playerWinTab == 0) window.alert('Hemlooo');  //basic alter func
+
+            let playBtn = document.querySelector(".playBtn");       //playbtn is the div to envelope the 3 buttons
+            let rockBtn = document.querySelector("#rockBtn");
+            let scissorBtn = document.querySelector("#scissorBtn");
+            let paperBtn = document.querySelector("#paperBtn");
+
+
+            rockBtn.addEventListener('click', (e) =>{ 
+                userInput = 'rock'
+                computerChoice = getComputerChoice(); // what i did wrong was instead of tin the fucntion i genreated it outside and it was constant
+                window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
+                evaluateResult(computerChoice, userInput);
+                winCounter(playerWinTab, computerWinTab);
+            });
+
+            const div = document.createElement('div'); 
+            div.classList.add('result')     //div is created here and modified in swtich cases
+            div.innerText = `Result:
+            Player1 wins: ${playerWinTab}
+            Skynet wins : ${computerWinTab}`
+            playBtn.appendChild(div);
+
+            paperBtn.addEventListener('click', (e) =>{ 
+                userInput = 'paper'
+                computerChoice = getComputerChoice();
+                window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
+                evaluateResult(computerChoice, userInput);
+                winCounter(playerWinTab, computerWinTab);
+
+            });
+
+            scissorBtn.addEventListener('click', (e) =>{ 
+                userInput = 'scissor'
+                computerChoice = getComputerChoice();
+                window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
+                evaluateResult(computerChoice, userInput);
+                winCounter(playerWinTab, computerWinTab); //struggled as in where to put the counter at but always follow the flow of code execution
+
+            });
+
 
             function evaluateResult(computerChoice, userInput){
 
-                switch(String(userInput)){
+                switch(userInput){
                     case 'rock':
 
                         if(computerChoice === "scissor"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
-                            playerWinTab++;
+                            playerWinTab++;;        // important to increament it to keep track of who won
+                            div.innerText = `Result:            
+                            Player1 wins: ${playerWinTab} 
+                            Skynet wins : ${computerWinTab}` // interesting how results can be added or modified in the hrml file,
                         }
                         else if(computerChoice === 'paper'){
                             window.alert(`You lose ! Judgement Day is coming, buckle up`);
+                            computerWinTab++;
+                            div.innerText = `Result:
+                            Player1 wins: ${playerWinTab}
+                            Skynet wins : ${computerWinTab}`
                         }
                         else{
                             window.alert("well its a tie! round 2 time!!")
@@ -33,9 +96,16 @@
                         if(computerChoice === "rock"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
                             playerWinTab++;
+                            div.innerText = `Result:
+                            Player1 wins: ${playerWinTab}
+                            Skynet wins : ${computerWinTab}`
                         }
                         else if(computerChoice === 'scissor'){
                             window.alert(`You lose ! Judgement Day is coming, buckle up`);
+                            computerWinTab++;
+                            div.innerText = `Result:
+                            Player1 wins: ${playerWinTab}
+                            Skynet wins : ${computerWinTab}`
                         }
                         else{
                             window.alert("well its a tie! round 2 time!!")
@@ -47,9 +117,16 @@
                         if(computerChoice === "paper"){
                             window.alert( `I can't believe a looney twoons like you beat the crap out of singularity, please "meow" now`);
                             playerWinTab++;
+                            div.innerText = `Result:
+                            Player1 wins: ${playerWinTab}
+                            Skynet wins : ${computerWinTab}`
                         }
                         else if(computerChoice === 'rock'){
                             window.alert(`You lose ! Judgement Day is coming, buckle up`);
+                            computerWinTab++;
+                            div.innerText = `Result:
+                            Player1 wins: ${playerWinTab}
+                            Skynet wins : ${computerWinTab}`
                         }
                         else{
                             window.alert("well its a tie! round 2 time!!")
@@ -59,28 +136,35 @@
                     default:
 
                         window.alert(`you sure you have put in the right input ?`);
-                        game();
+                        //game();
                         break;
                 }
             }
 
-            function game(){
+            let winCounter = (playerWinTab, computerWinTab) => { //to track who won and not
+                if(playerWinTab >5 || computerWinTab >5)
+                 window.alert('You won 5 rounds');  
+            };
+            //function game(){
 
-                for(let i=0; i<5; i++){
+            
 
-                    const playerSelection = prompt("Please Enter Your Choice, I hope you win against the Skynet");
-                    const userInput = playerSelection.toLowerCase();        <!-- To make user input case insensitive -->
-                    const computerChoice = getComputerChoice();
 
-                    window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
+            //     // for(let i=0; i<5; i++){
+            //          const playerSelection = prompt("Please Enter Your Choice, I hope you win against the Skynet");
+            //         const userInput = playerSelection.toLowerCase();        <!-- To make user input case insensitive -->
+            //         const computerChoice = getComputerChoice();
 
-                    evaluateResult(computerChoice, userInput);
-                }
+            //         window.alert(`you chose ${userInput} while computer chose ${computerChoice}`);
 
-                window.alert(`You won ${playerWinTab} times out of a game of 5 rounds, I hope you enjoyed this game`);
-            }
+            //         evaluateResult(computerChoice, userInput);
+            //     } 
 
-            game();
+            //     window.alert(`You won ${playerWinTab} times out of a game of 5 rounds, I hope you enjoyed this game`);
+            // }
+
+
+            //game();
         </script>
     </body>
-</html>
+</html> 
