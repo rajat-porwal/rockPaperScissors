@@ -13,10 +13,10 @@ body {
 }
 
 .playBtn {
-    background: rgba(255, 255, 255, 0.1);
+    background: #5e5d5d00;
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 20px #490074;
     text-align: center;
     backdrop-filter: blur(10px);
 }
@@ -29,7 +29,7 @@ body {
 }
 
 button {
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    background: linear-gradient(45deg, #007767, #002dc2);
     border: none;
     color: #fff;
     padding: 15px 30px;
